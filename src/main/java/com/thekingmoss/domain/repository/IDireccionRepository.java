@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface IDireccionRepository extends JpaRepository<Direccion, Long> {
-    List<Direccion> findByDireccionByUsuario_IdUsuario(long idUsuario);
+    List<Direccion> findByUsuario_Id(long idUsuario);
 }
