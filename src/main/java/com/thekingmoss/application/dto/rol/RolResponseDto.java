@@ -7,5 +7,4 @@ import lombok.Data;
 @Builder
 public class RolResponseDto {
     private String idRol;
-    private String descripcion;
 }
