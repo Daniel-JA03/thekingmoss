@@ -4,6 +4,8 @@ import com.thekingmoss.domain.entity.types.TipoDireccion;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Builder
 public class DireccionResponseDto {
@@ -22,5 +24,5 @@ public class DireccionResponseDto {
     private String telefono;
     private String email;
     //Rol
-    private Long nombreRol;
+    private List<String> nombreRoles;
 }
