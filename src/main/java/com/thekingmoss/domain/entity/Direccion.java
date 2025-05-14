@@ -13,7 +13,7 @@ import lombok.*;
 public class Direccion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "direcion_id")
+    @Column(name = "direccion_id")
     private Long direccionId;
 
     @Column(name = "pais", nullable = false)
@@ -28,7 +28,7 @@ public class Direccion {
     @Column(name = "distrito", nullable = false)
     private String distrito;
 
-    @Column(name = "dirección_referencia", nullable = false)
+    @Column(name = "direccion_referencia", nullable = false)
     private String referencia;
 
     @Enumerated(EnumType.STRING)
