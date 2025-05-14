@@ -1,5 +1,6 @@
 package com.thekingmoss.application.dto.pedido;
 
+import com.thekingmoss.application.dto.detallePedido.DetallePedidoRequestDto;
 import com.thekingmoss.domain.entity.types.TipoEstadoPedido;
 import lombok.Data;
 
@@ -15,5 +16,6 @@ public class PedidoRequestDto {
     private TipoEstadoPedido tipoEstadoPedido;
     // Usuario
     private Long usuarioId;
-    private List<DetallePedidoRequestDto> details;
+
+    private List<DetallePedidoRequestDto> detalles;
 }
