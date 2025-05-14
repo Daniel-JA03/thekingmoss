@@ -13,6 +13,7 @@ public class ProductoResponseDto {
     private Integer stock;
     private BigDecimal precioUnitario;
     private BigDecimal descuento;
+    private String descripcion;
     private String tamanio;
     private BigDecimal peso;
     private Long categoriaId;
