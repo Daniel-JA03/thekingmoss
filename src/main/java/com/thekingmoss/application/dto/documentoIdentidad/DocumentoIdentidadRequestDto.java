@@ -4,8 +4,8 @@ import com.thekingmoss.domain.entity.types.TipoDocumentoIdentidad;
 import lombok.Data;
 
 @Data
-public class DocumentoRequestDto {
+public class DocumentoIdentidadRequestDto {
     private String numeroDocumentoIdentidad;
     private TipoDocumentoIdentidad tipoDocumentoIdentidad;
-    private String usuarioId;
+    private Long usuarioId;
 }

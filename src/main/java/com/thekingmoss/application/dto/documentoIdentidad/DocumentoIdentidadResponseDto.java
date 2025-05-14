@@ -4,6 +4,8 @@ import com.thekingmoss.domain.entity.types.TipoDocumentoIdentidad;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Builder
 public class DocumentoIdentidadResponseDto {
@@ -11,13 +13,12 @@ public class DocumentoIdentidadResponseDto {
     private String numeroDocumentoIdentidad;
     private TipoDocumentoIdentidad tipoDocumentoIdentidad;
     // Usuario
-    private String usuarioId;
+    private Long usuarioId;
     private String username;
     private String nombreUsuario;
     private String apellidoUsuario;
     private String telefono;
     private String email;
     // Rol
-    private Long rolId;
-    private String nombreRol;
+    private List<String> nombreRoles;
 }
