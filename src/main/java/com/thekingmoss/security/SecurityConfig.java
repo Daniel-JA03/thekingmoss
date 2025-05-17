@@ -38,11 +38,18 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/categoria/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/producto/**").permitAll()
 
                         // ADMINISTRADOR
+                        //Categoria
                         .requestMatchers(HttpMethod.POST, "/api/categoria").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/categoria/**").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/categoria/**").hasAuthority("ROLE_ADMIN")
+                        //Producto
+                        .requestMatchers(HttpMethod.POST, "/api/producto").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/producto/**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/producto/**").hasAuthority("ROLE_ADMIN")
+
                         .anyRequest().authenticated()
                 )
                 .authenticationProvider(provider())
