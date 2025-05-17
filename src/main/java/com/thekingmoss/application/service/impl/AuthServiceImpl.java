@@ -33,10 +33,10 @@ public class AuthServiceImpl implements IAuthService {
     @Override
     public LoginResponseDto authenticate(LoginRequestDto loginRequestDto) {
         authenticationManager.authenticate(
-              new UsernamePasswordAuthenticationToken(
-                      loginRequestDto.getUsername(),
-                      loginRequestDto.getPassword()
-              )
+                new UsernamePasswordAuthenticationToken(
+                        loginRequestDto.getUsername(),
+                        loginRequestDto.getPassword()
+                )
         );
         UserDetails user = userDetailsService.loadUserByUsername(loginRequestDto.getUsername());
         String token = jwtUtil.generateToken(user);
