@@ -53,14 +53,28 @@ public class AuthServiceImpl implements IAuthService {
 
     @Override
     public String register(RegistrarRequestDto registrarRequestDto) {
+        // validamos que el username no exista
         if (usuarioRepository.existsByUsername(registrarRequestDto.getUsername())) {
-            throw new RuntimeException("Usuario ya existe");
+            throw new RuntimeException("El nombre de usuario ya está en uso");
         }
+
+        // validamos que el email no exista
+        if(usuarioRepository.existsByEmail(registrarRequestDto.getEmail())) {
+            throw new RuntimeException("El email ya está registrado");
+        }
+
+        // Obtener rol por defecto (USER)
         Rol rolUser = rolRepository.findById("ROLE_USER")
-                .orElseThrow(() -> new RuntimeException("No existe el rol"));
+                .orElseThrow(() -> new RuntimeException("No USER no encontrado"));
+
+        // Construir el usuario
         Usuario usuario = Usuario.builder()
                 .username(registrarRequestDto.getUsername())
                 .password(passwordEncoder.encode(registrarRequestDto.getPassword()))
+                .nombreUsuario(registrarRequestDto.getNombreUsuario())
+                .apellidoUsuario(registrarRequestDto.getApellidoUsuario())
+                .telefono(registrarRequestDto.getTelefono())
+                .email(registrarRequestDto.getEmail())
                 .roles(Set.of(rolUser))
                 .build();
         usuarioRepository.save(usuario);
