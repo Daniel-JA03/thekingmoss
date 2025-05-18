@@ -39,7 +39,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/categoria/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/producto/**").permitAll()
-
+                        .requestMatchers(HttpMethod.GET, "/api/pedidos/**").permitAll()
                         // ADMINISTRADOR
                         //Categoria
                         .requestMatchers(HttpMethod.POST, "/api/categoria").hasAuthority("ROLE_ADMIN")
@@ -49,7 +49,15 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/producto").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/producto/**").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/producto/**").hasAuthority("ROLE_ADMIN")
-
+                        //Pedido
+                        .requestMatchers(HttpMethod.POST, "/api/pedidos").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+                        .requestMatchers(HttpMethod.PUT, "/api/pedidos/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+                        .requestMatchers(HttpMethod.DELETE, "/api/pedidos/**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/pedidos/{pedidoId}/{productoId}").hasAuthority("ROLE_ADMIN")
+                        //DetallePedido
+                        .requestMatchers(HttpMethod.GET, "/api/pedidos/**/detalles").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+                        .requestMatchers(HttpMethod.POST, "/api/pedidos/**/detalles").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+                        .requestMatchers(HttpMethod.PUT, "/api/pedidos/**/detalles/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
                         .anyRequest().authenticated()
                 )
                 .authenticationProvider(provider())

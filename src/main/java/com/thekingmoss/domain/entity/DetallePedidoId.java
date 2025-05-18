@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
+//@EqualsAndHashCode
 public class DetallePedidoId implements Serializable {
     @Column(name = "pedido_id")
     private Long pedidoId;

@@ -9,8 +9,10 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class DetallePedido {
     @EmbeddedId
+    @EqualsAndHashCode.Include
     private DetallePedidoId detallePedidoId;
 
     @MapsId("pedidoId")
