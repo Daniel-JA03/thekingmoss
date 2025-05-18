@@ -34,4 +34,5 @@ public class AuthController {
         response.put("message", "Usuario registrado exitosamente");
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
 }
