@@ -14,10 +14,12 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
+@EqualsAndHashCode(onlyExplicitlyIncluded = true) // Solo usa campos explícitos
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pedido_id")
+    @EqualsAndHashCode.Include // Incluye solo el ID en hashCode/equals
     private Long pedidoId;
 
     @Column(name = "fecha_pedido", nullable = false)
