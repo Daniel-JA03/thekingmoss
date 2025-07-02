@@ -36,6 +36,7 @@ public class SecurityConfig {
                 .sessionManagement(sm ->
                         sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        // Endpoints públicos
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/categoria/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/producto/**").permitAll()
@@ -58,12 +59,24 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/pedidos/{pedidoId}/detalles").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
                         .requestMatchers(HttpMethod.POST, "/api/pedidos/{pedidoId}/detalles").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
                         .requestMatchers(HttpMethod.PUT, "/api/pedidos/{pedidoId}/detalles/{productoId}").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
-
                         //DocumentoIdentidad
                         .requestMatchers(HttpMethod.POST, "/api/documentoIdentidad").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/documentoIdentidad/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
                         .requestMatchers(HttpMethod.PUT, "/api/documentoIdentidad/**").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/documentoIdentidad/**").hasAuthority("ROLE_ADMIN")
+                        //Direccion
+                        .requestMatchers(HttpMethod.GET, "/api/direccion").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/direccion/usuario/{id}").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+                        .requestMatchers(HttpMethod.GET, "/api/direccion/{id}").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+                        .requestMatchers(HttpMethod.POST, "/api/direccion").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+                        .requestMatchers(HttpMethod.PUT, "/api/direccion/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+                        .requestMatchers(HttpMethod.DELETE, "/api/direccion/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+                        //Producto Imagen
+                        .requestMatchers(HttpMethod.GET, "/api/productoImagen").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/productoImagen/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+                        .requestMatchers(HttpMethod.POST, "/api/productoImagen").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/productoImagen/**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/productoImagen/**").hasAuthority("ROLE_ADMIN")
                         .anyRequest().authenticated()
                 )
                 .authenticationProvider(provider())
@@ -92,11 +105,11 @@ public class SecurityConfig {
         return configuration.getAuthenticationManager();
     }
 
-    // Configuración de CORS para permitir solicitudes desde localhost:5173 (Frontend React Vite)
+    // Configuración de CORS para permitir solicitudes desde localhost:4200 (Frontend Angular)
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowedOrigins(List.of("http://localhost:5173"));
+        corsConfiguration.setAllowedOrigins(List.of("http://localhost:4200"));
         corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         corsConfiguration.setAllowedHeaders(List.of("*"));
         corsConfiguration.setAllowCredentials(true);

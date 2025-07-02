@@ -12,7 +12,7 @@ public class ProductoImagenMapper {
         return ProductoImagenResponse.builder()
                 .productoImagenId(productoImagen.getProductoImagenId())
                 .imagenUrl(productoImagen.getImagenUrl())
-                .productoId(productoImagen.getProductoImagenId())
+                .productoId(productoImagen.getProducto().getProductoId())
                 .nombreProducto(productoImagen.getProducto().getNombre())
                 .build();
     }
