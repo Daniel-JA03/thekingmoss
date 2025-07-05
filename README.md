@@ -45,6 +45,7 @@
     - Actualizar las credenciales en `src/main/resources/application.yml  `.   
 
    ```yml
+   spring:
       datasource:
         url: jdbc:mysql://localhost:3306/thekingmoss
         username: tu_usuario
@@ -95,3 +96,12 @@ thekingmoss/
 └── imagesProducts/
     └── default.jpg                     
 ```
+
+---
+
+## 🔐 Seguridad y Roles
+
+La API implementa autenticación con **JWT (JSON Web Token)**.
+
+- `ROLE_ADMIN`: Acceso completo
+- `ROLE_USER`: Acceso limitado
