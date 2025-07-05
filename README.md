@@ -105,3 +105,16 @@ La API implementa autenticación con **JWT (JSON Web Token)**.
 
 - `ROLE_ADMIN`: Acceso completo
 - `ROLE_USER`: Acceso limitado
+
+
+
+
+
+---
+
+## 🧑 Autor
+
+🔗 [GitHub - Daniel-JA03](https://github.com/Daniel-JA03 )  
+🎓 [Mi portafolio](https://portafolio-danielja.netlify.app/ ) | 📍 Lima, Perú  
+
+
