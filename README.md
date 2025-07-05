@@ -106,9 +106,21 @@ La API implementa autenticación con **JWT (JSON Web Token)**.
 - `ROLE_ADMIN`: Acceso completo
 - `ROLE_USER`: Acceso limitado
 
+---
 
+## 🌐 Endpoints Principales
 
-
+| Método | Endpoint | Descripción | Acceso |
+|--------|----------|-------------|--------|
+| **POST**   | `/api/auth/login` | Iniciar sesión y obtener token JWT | Público |
+| **GET**    | `/api/categoria` | Listar categorías de musgos | Público |
+| **POST**   | `/api/categoria` | Crear categoría | ADMIN |
+| **GET**    | `/api/producto` | Listar productos de musgos | Público |
+| **POST**   | `/api/producto` | Crear producto | ADMIN |
+| **GET**    | `/api/pedidos` | Listar pedidos | Público |
+| **POST**   | `/api/pedidos` | Crear pedido | ADMIN / USER |
+| **GET**   | `/api/pedidos/{pedidoId}/detalles` | ver detalles del pedido | ADMIN / USER |
+| **POST**   | `/api/pedidos/{pedidoId}/detalles` | Crear detalle del pedido | ADMIN / USER |
 
 ---
 
