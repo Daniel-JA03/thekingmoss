@@ -124,6 +124,10 @@ La API implementa autenticación con **JWT (JSON Web Token)**.
 
 ---
 
+## 🧪 Pruebas con Postman
+
+---
+
 ## 🧑 Autor
 
 🔗 [GitHub - Daniel-JA03](https://github.com/Daniel-JA03 )  
