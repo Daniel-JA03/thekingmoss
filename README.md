@@ -124,8 +124,16 @@ La API implementa autenticación con **JWT (JSON Web Token)**.
 
 ---
 
-## 🧪 Pruebas con Postman
+## 🧪 Colección de Postman
 
+Puedes importar esta colección en Postman para probar todos los endpoints de forma rápida:
+
+📥 [Descargar colección Postman](thekingmoss-postman-collection.json)
+
+> Recuerda usar el token JWT obtenido en el login para autorizar tus peticiones protegidas:
+>
+> **Header**:  
+> `Authorization: Bearer <tu_token_aquí>`
 ---
 
 ## 🧑 Autor
