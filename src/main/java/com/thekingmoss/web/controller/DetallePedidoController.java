@@ -20,7 +20,7 @@ public class DetallePedidoController {
         return ResponseEntity.ok(detallePedidoService.listarDetallePorPedidoId(pedidoId));
     }
 
-    @PutMapping("/{productoId}")
+    @PutMapping("/{detalleId}")
     public ResponseEntity<DetallePedidoResponseDto> actualizarDetallePedido(@PathVariable Long pedidoId, @PathVariable Long detalleId, @RequestBody DetallePedidoRequestDto dto) {
         return ResponseEntity.ok(detallePedidoService.actualizarDetallePedido(pedidoId, detalleId, dto));
     }
