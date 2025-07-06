@@ -1,0 +1,1453 @@
+{
+	"info": {
+		"_postman_id": "829d1bbc-120b-4338-b8a8-cc883d4edebd",
+		"name": "TheKingMoss",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37285150"
+	},
+	"item": [
+		{
+			"name": "categoria",
+			"item": [
+				{
+					"name": "listarCategorias",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc1OTM4MywiZXhwIjoxNzUxNzk1MzgzfQ.dxtKbOVFHvXTQtTR74Rn7AyiqyafjxXzSZxqqvynKzw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/categoria",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categoria"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crearCategoria",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc1OTM4MywiZXhwIjoxNzUxNzk1MzgzfQ.dxtKbOVFHvXTQtTR74Rn7AyiqyafjxXzSZxqqvynKzw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombreCategoria\": \"Nueva categoria\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/categoria",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categoria"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminarCategoria",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRpZWdvbDEyMyIsImlhdCI6MTc1MTc1NzM1MywiZXhwIjoxNzUxNzkzMzUzfQ.agicU-xQuUuvFYrEqwZOc8oIf2wnb1EwXR1edTXgxcY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"nueva\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/categoria/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categoria",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscarCategoriaPorId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc1OTM4MywiZXhwIjoxNzUxNzk1MzgzfQ.dxtKbOVFHvXTQtTR74Rn7AyiqyafjxXzSZxqqvynKzw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/categoria/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categoria",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizarCategoria",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc1OTM4MywiZXhwIjoxNzUxNzk1MzgzfQ.dxtKbOVFHvXTQtTR74Rn7AyiqyafjxXzSZxqqvynKzw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombreCategoria\": \"Categoria modificada\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/categoria/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categoria",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "listarProductos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc1OTM4MywiZXhwIjoxNzUxNzk1MzgzfQ.dxtKbOVFHvXTQtTR74Rn7AyiqyafjxXzSZxqqvynKzw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/producto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"producto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscarProductoPorId",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/producto/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"producto",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminarProducto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc1OTM4MywiZXhwIjoxNzUxNzk1MzgzfQ.dxtKbOVFHvXTQtTR74Rn7AyiqyafjxXzSZxqqvynKzw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/producto/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"producto",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listarProductoPorNombreCategoria",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/producto/categoria/Musgo Vivo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"producto",
+								"categoria",
+								"Musgo Vivo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crearProducto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc1OTM4MywiZXhwIjoxNzUxNzk1MzgzfQ.dxtKbOVFHvXTQtTR74Rn7AyiqyafjxXzSZxqqvynKzw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombreProducto\": \"Producto nuevo admin 3\",\r\n    \"stock\": 115,\r\n    \"precioUnitario\": 15.20,\r\n    \"descuento\": 5.50,\r\n    \"descripcion\": \"nueva descripcion admin 2\",\r\n    \"tamanio\": \"30 cm\",\r\n    \"peso\": 10.50,\r\n    \"categoriaId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/producto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"producto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizarProducto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc1OTM4MywiZXhwIjoxNzUxNzk1MzgzfQ.dxtKbOVFHvXTQtTR74Rn7AyiqyafjxXzSZxqqvynKzw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombreProducto\": \"Producto nuevo admin actualizado 2\",\r\n    \"stock\": 125,\r\n    \"precioUnitario\": 8.20,\r\n    \"descuento\": 2.50,\r\n    \"descripcion\": \"nueva descripcion admin 2\",\r\n    \"tamanio\": \"15 cm\",\r\n    \"peso\": 10.50,\r\n    \"categoriaId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/producto/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"producto",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pedidos",
+			"item": [
+				{
+					"name": "listarPedidos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscarPedidoPorId",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/pedidos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pedidos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminarPedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc1OTM4MywiZXhwIjoxNzUxNzk1MzgzfQ.dxtKbOVFHvXTQtTR74Rn7AyiqyafjxXzSZxqqvynKzw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/pedidos/11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pedidos",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crearPedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc1OTM4MywiZXhwIjoxNzUxNzk1MzgzfQ.dxtKbOVFHvXTQtTR74Rn7AyiqyafjxXzSZxqqvynKzw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fechaPedido\": \"2025-07-06\",\r\n    \"tipoEntrega\": \"delivery\",\r\n    \"informacionPedido\": \"nueva orden 3\",\r\n    \"instruccionEntrega\": \"es una prueba 3\",\r\n    \"tipoEstadoPedido\": \"ENVIANDO\",\r\n    \"usuarioId\": 3,\r\n    \"detalles\": [\r\n        {\r\n        \"productoId\": 2,\r\n        \"cantidad\": 4\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "agregarDetallePedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc2ODkzMSwiZXhwIjoxNzUxODA0OTMxfQ.EEFDLqASR5o5yI6XG-SpTCVn0kNMBROmFmV49YJlCo0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productoId\": 2,\r\n  \"cantidad\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pedidos/10/detalles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pedidos",
+								"10",
+								"detalles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminarDetallePedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc2ODkzMSwiZXhwIjoxNzUxODA0OTMxfQ.EEFDLqASR5o5yI6XG-SpTCVn0kNMBROmFmV49YJlCo0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productoId\": 2,\r\n  \"cantidad\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pedidos/10/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pedidos",
+								"10",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizarPedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc1OTM4MywiZXhwIjoxNzUxNzk1MzgzfQ.dxtKbOVFHvXTQtTR74Rn7AyiqyafjxXzSZxqqvynKzw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fechaPedido\": \"2025-07-06\",\r\n  \"tipoEntrega\": \"delivery\",\r\n  \"informacionPedido\": \"nueva orden 3 update\",\r\n  \"instruccionEntrega\": \"es una prueba 3 update\",\r\n  \"tipoEstadoPedido\": \"PAGADO\",\r\n  \"usuarioId\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pedidos/11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pedidos",
+								"11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "registrar",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"testuser3\",\r\n    \"password\": \"password123\",\r\n    \"nombreUsuario\": \"Test3\",\r\n    \"apellidoUsuario\": \"User3\",\r\n    \"telefono\": \"945654201\",\r\n    \"email\": \"test3@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"daniel123\",\r\n    \"password\": \"TuClaveSuperSecretaMuyLarga1234567890\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DocumentoIdentidad",
+			"item": [
+				{
+					"name": "listarDocumentoIdentidad",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc2ODkzMSwiZXhwIjoxNzUxODA0OTMxfQ.EEFDLqASR5o5yI6XG-SpTCVn0kNMBROmFmV49YJlCo0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/documentoIdentidad",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"documentoIdentidad"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CrearDocumentoIdentidad",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc2ODkzMSwiZXhwIjoxNzUxODA0OTMxfQ.EEFDLqASR5o5yI6XG-SpTCVn0kNMBROmFmV49YJlCo0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numeroDocumentoIdentidad\": \"08456581\",\r\n    \"tipoDocumentoIdentidad\": \"DNI\",\r\n    \"usuarioId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/documentoIdentidad",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"documentoIdentidad"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizarDocumento",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc2ODkzMSwiZXhwIjoxNzUxODA0OTMxfQ.EEFDLqASR5o5yI6XG-SpTCVn0kNMBROmFmV49YJlCo0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numeroDocumentoIdentidad\": \"01255621\",\r\n    \"tipoDocumentoIdentidad\": \"DNI\",\r\n    \"usuarioId\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/documentoIdentidad/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"documentoIdentidad",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscarDocumentoPorId",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc2ODkzMSwiZXhwIjoxNzUxODA0OTMxfQ.EEFDLqASR5o5yI6XG-SpTCVn0kNMBROmFmV49YJlCo0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numeroDocumentoIdentidad\": \"73828120\",\r\n    \"tipoDocumentoIdentidad\": \"DNI\",\r\n    \"usuarioId\": 1\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/documentoIdentidad/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"documentoIdentidad",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminarDocumentoIdentidad",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc2ODkzMSwiZXhwIjoxNzUxODA0OTMxfQ.EEFDLqASR5o5yI6XG-SpTCVn0kNMBROmFmV49YJlCo0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/documentoIdentidad/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"documentoIdentidad",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Direccion",
+			"item": [
+				{
+					"name": "listarDirecciones",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc2ODkzMSwiZXhwIjoxNzUxODA0OTMxfQ.EEFDLqASR5o5yI6XG-SpTCVn0kNMBROmFmV49YJlCo0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numeroDocumentoIdentidad\": \"73828120\",\r\n    \"tipoDocumentoIdentidad\": \"DNI\",\r\n    \"usuarioId\": 1\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/direccion",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"direccion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listarDireccionesPorUsuario",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc2ODkzMSwiZXhwIjoxNzUxODA0OTMxfQ.EEFDLqASR5o5yI6XG-SpTCVn0kNMBROmFmV49YJlCo0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numeroDocumentoIdentidad\": \"73828120\",\r\n    \"tipoDocumentoIdentidad\": \"DNI\",\r\n    \"usuarioId\": 1\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/direccion/usuario/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"direccion",
+								"usuario",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscarDireccionPorId",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc2ODkzMSwiZXhwIjoxNzUxODA0OTMxfQ.EEFDLqASR5o5yI6XG-SpTCVn0kNMBROmFmV49YJlCo0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numeroDocumentoIdentidad\": \"73828120\",\r\n    \"tipoDocumentoIdentidad\": \"DNI\",\r\n    \"usuarioId\": 1\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/direccion/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"direccion",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "guardarDireccion",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc2ODkzMSwiZXhwIjoxNzUxODA0OTMxfQ.EEFDLqASR5o5yI6XG-SpTCVn0kNMBROmFmV49YJlCo0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pais\": \"Peru\",\r\n    \"estado\": \"ACTIVO\",\r\n    \"provincia\": \"Lima\",\r\n    \"distrito\": \"Tomas Valle\",\r\n    \"referencia\": \"Cerca al centro comercial Plaza Norte\",\r\n    \"tipoDireccion\": \"TRABAJO\",\r\n    \"usuarioId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/direccion",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"direccion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizarDireccion",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc2ODkzMSwiZXhwIjoxNzUxODA0OTMxfQ.EEFDLqASR5o5yI6XG-SpTCVn0kNMBROmFmV49YJlCo0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pais\": \"Peru\",\r\n    \"estado\": \"ACTIVO\",\r\n    \"provincia\": \"Lima\",\r\n    \"distrito\": \"Tomas Valle actualizado\",\r\n    \"referencia\": \"Cerca al centro comercial Plaza Norte\",\r\n    \"tipoDireccion\": \"TRABAJO\",\r\n    \"usuarioId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/direccion/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"direccion",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminarDireccion",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc2ODkzMSwiZXhwIjoxNzUxODA0OTMxfQ.EEFDLqASR5o5yI6XG-SpTCVn0kNMBROmFmV49YJlCo0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pais\": \"Peru\",\r\n    \"estado\": \"ACTIVO\",\r\n    \"provincia\": \"Lima\",\r\n    \"distrito\": \"Tomas Valle actualizado\",\r\n    \"referencia\": \"Cerca al centro comercial Plaza Norte\",\r\n    \"tipoDireccion\": \"TRABAJO\",\r\n    \"usuarioId\": 3\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/direccion/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"direccion",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ProductoImagen",
+			"item": [
+				{
+					"name": "listarProductoImagen",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc2ODkzMSwiZXhwIjoxNzUxODA0OTMxfQ.EEFDLqASR5o5yI6XG-SpTCVn0kNMBROmFmV49YJlCo0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/productoImagen",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productoImagen"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crearProductoImagen",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc2ODkzMSwiZXhwIjoxNzUxODA0OTMxfQ.EEFDLqASR5o5yI6XG-SpTCVn0kNMBROmFmV49YJlCo0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "img",
+									"type": "file",
+									"src": "postman-cloud:///1f034338-e187-47b0-bca2-fb88e03d14b9"
+								},
+								{
+									"key": "productoId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/productoImagen",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productoImagen"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizarProductoImagen",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc2ODkzMSwiZXhwIjoxNzUxODA0OTMxfQ.EEFDLqASR5o5yI6XG-SpTCVn0kNMBROmFmV49YJlCo0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "img",
+									"type": "file",
+									"src": "postman-cloud:///1f03465d-2bf7-47b0-b268-54b06aa82acc"
+								},
+								{
+									"key": "productoId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/productoImagen/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productoImagen",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscarProductoImagenPorId",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc2ODkzMSwiZXhwIjoxNzUxODA0OTMxfQ.EEFDLqASR5o5yI6XG-SpTCVn0kNMBROmFmV49YJlCo0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "img",
+									"type": "file",
+									"src": "postman-cloud:///1f034338-e187-47b0-bca2-fb88e03d14b9"
+								},
+								{
+									"key": "productoId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/productoImagen/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productoImagen",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminarProductoImagen",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc2ODkzMSwiZXhwIjoxNzUxODA0OTMxfQ.EEFDLqASR5o5yI6XG-SpTCVn0kNMBROmFmV49YJlCo0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "img",
+									"type": "file",
+									"src": "postman-cloud:///1f034338-e187-47b0-bca2-fb88e03d14b9"
+								},
+								{
+									"key": "productoId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/productoImagen/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"productoImagen",
+								"9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DetallePedido",
+			"item": [
+				{
+					"name": "listarDetallesPorPedidoId",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc2ODkzMSwiZXhwIjoxNzUxODA0OTMxfQ.EEFDLqASR5o5yI6XG-SpTCVn0kNMBROmFmV49YJlCo0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productoId\": 2,\r\n  \"cantidad\": 4\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pedidos/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pedidos",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizarDetallePedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImRhbmllbDEyMyIsImlhdCI6MTc1MTc2ODkzMSwiZXhwIjoxNzUxODA0OTMxfQ.EEFDLqASR5o5yI6XG-SpTCVn0kNMBROmFmV49YJlCo0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"productoId\": 2,\r\n  \"cantidad\": 12\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pedidos/10/detalles/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pedidos",
+								"10",
+								"detalles",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
