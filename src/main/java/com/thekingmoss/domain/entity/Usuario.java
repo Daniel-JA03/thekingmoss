@@ -52,7 +52,7 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
     private List<Direccion> direcciones;
 
-    @OneToOne(mappedBy = "usuario")
+    @OneToOne(mappedBy = "usuario", orphanRemoval = true)
     private DocumentoIdentidad documentoIdentidad;
 
     @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
