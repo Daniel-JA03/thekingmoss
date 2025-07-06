@@ -1,12 +1,12 @@
 server:
-  port: 8080
+  port: ${PORT}
 spring:
   application:
     name: thekingmoss
   datasource:
     url: jdbc:mysql://localhost:3306/thekingmoss
-    username: root
-    password: mysql
+    username: ${USERNAME}
+    password: ${PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -18,7 +18,7 @@ spring:
         format_sql: true
         dialect: org.hibernate.dialect.MySQL8Dialect
 jwt:
-  secret: TuClaveSuperSecretaMuyLarga1234567890
+  secret: ${SECRET}
   expiration: 36000000
 
 
