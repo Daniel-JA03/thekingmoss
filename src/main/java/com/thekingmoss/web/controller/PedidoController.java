@@ -44,9 +44,9 @@ public class PedidoController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/{orderId}/detalles")
-    public ResponseEntity<DetallePedidoResponseDto> agregarDetallePedido(@PathVariable Long orderId ,@RequestBody DetallePedidoRequestDto detallePedidoRequestDto) {
-        return new ResponseEntity<>(pedidoService.agregarDetallePedido(orderId, detallePedidoRequestDto), HttpStatus.CREATED);
+    @PostMapping("/{pedidoId}/detalles")
+    public ResponseEntity<DetallePedidoResponseDto> agregarDetallePedido(@PathVariable Long pedidoId ,@RequestBody DetallePedidoRequestDto detallePedidoRequestDto) {
+        return new ResponseEntity<>(pedidoService.agregarDetallePedido(pedidoId, detallePedidoRequestDto), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{pedidoId}/{productoId}")

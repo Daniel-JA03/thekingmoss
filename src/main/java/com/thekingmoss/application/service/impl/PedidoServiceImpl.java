@@ -100,9 +100,9 @@ public class PedidoServiceImpl implements IPedidoService {
 
     @Override
     @Transactional
-    public DetallePedidoResponseDto agregarDetallePedido(Long id, DetallePedidoRequestDto requestDto) {
-        Pedido pedido = pedidoRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Pedido no encontrado" + id));
+    public DetallePedidoResponseDto agregarDetallePedido(Long pedidoId, DetallePedidoRequestDto requestDto) {
+        Pedido pedido = pedidoRepository.findById(pedidoId)
+                .orElseThrow(() -> new ResourceNotFoundException("Pedido no encontrado" + pedidoId));
         Producto producto = productoRepository.findById(requestDto.getProductoId())
                 .orElseThrow(() -> new ResourceNotFoundException("No existe el producto: " + requestDto.getProductoId()));
         DetallePedido detallePedido = detallePedidoMapper.toEntity(requestDto, pedido, producto);
