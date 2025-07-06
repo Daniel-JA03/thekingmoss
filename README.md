@@ -30,6 +30,29 @@
 ### Requisitos Previos
 - **Java JDK 17**: Para ejecutar el backend.
 - **MySQL**: Para la base de datos
+- (Opcional) **Postman** para pruebas
+
+---
+
+## ⚙️ Variables de Entorno
+
+El archivo `application.yml` utiliza variables externas para mayor seguridad y flexibilidad.
+
+### ¿Cómo definirlas en IntelliJ IDEA?
+
+1. Ve a `Run > Edit Configurations...`
+2. Selecciona tu configuración (por ejemplo: `ThekingmossApplication`)
+3. Haz clic en **Modify Options > Add Environment Variables**
+4. Agrega las siguientes variables:
+
+| Variable    | Valor de ejemplo            |
+|-------------|-----------------------------|
+| `PORT`      | `8080`                      |
+| `USER_NAME`  | `tu_usuario`               |
+| `PASSWORD_DB`  | `tu_contraseña`          |
+| `SECRET`    | `claveSegura1234`           |
+
+Estas variables se utilizan automáticamente desde `application.yml` usando el formato `${VARIABLE}`.
 
 ---
 
@@ -48,8 +71,8 @@
    spring:
       datasource:
         url: jdbc:mysql://localhost:3306/thekingmoss
-        username: tu_usuario
-        password: tu_contraseña
+        username: ${USER_NAME}
+        password: ${PASSWORD_DB}
         driver-class-name: com.mysql.cj.jdbc.Driver
     ```
 
