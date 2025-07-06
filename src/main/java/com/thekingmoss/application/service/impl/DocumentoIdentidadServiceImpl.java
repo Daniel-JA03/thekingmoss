@@ -12,6 +12,7 @@ import com.thekingmoss.domain.repository.IUsuarioRepository;
 import com.thekingmoss.web.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.print.Doc;
 import java.util.List;
@@ -64,10 +65,22 @@ public class DocumentoIdentidadServiceImpl implements IDocumentoIdentidadService
     }
 
     @Override
+    @Transactional
     public void eliminarDocumentoIdentidad(Long id) {
         if(!documentoIdentidadRepository.existsById(id)) {
             throw new ResourceNotFoundException("Documento no encontrado " + id);
         }
+
+        // Buscar el documento
+        DocumentoIdentidad documentoIdentidad = documentoIdentidadRepository.findById(id)
+                        .orElseThrow(() -> new ResourceNotFoundException("Documento no encontrado: " + id));
+
+        // Limpiar la referencia en Usuario
+        Usuario usuario = documentoIdentidad.getUsuario();
+        usuario.setDocumentoIdentidad(null); // eliminar la referencia inversa
+        usuarioRepository.save(usuario); // Guardar cambio
+
+        // elimina el documento
         documentoIdentidadRepository.deleteById(id);
     }
 }
