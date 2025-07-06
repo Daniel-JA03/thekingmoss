@@ -95,7 +95,7 @@ public class PedidoServiceImpl implements IPedidoService {
         if(!pedidoRepository.existsById(id)) {
             throw new ResourceNotFoundException("Pedido no encontrado" + id);
         }
-        pedidoRepository.deleteById(id);
+        pedidoRepository.deleteById(id); // Hibernate borra los detalles automáticamente
     }
 
     @Override

@@ -42,7 +42,7 @@ public class Pedido {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "pedido")
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.REMOVE)
     @Builder.Default
     private Set<DetallePedido> detallePedidos  = new LinkedHashSet<>();
 }
