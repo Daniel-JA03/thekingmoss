@@ -38,6 +38,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // Endpoints públicos
                         .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/imagesProducts/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/categoria/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/producto/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/pedidos/**").permitAll()

@@ -11,14 +11,14 @@ import java.nio.file.Paths;
 
 @Service
 public class UploadFileService {
-    private String folder = "imagesProducts//";
+    private String folder = "imagesProducts" + File.separator;
 
     public String saveImage(MultipartFile file) throws IOException {
-        if(!file.isEmpty()) {
+        if (!file.isEmpty()) {
             byte[] bytes = file.getBytes();
             Path path = Paths.get(folder + file.getOriginalFilename());
             Files.write(path, bytes);
-            return file.getOriginalFilename();
+            return file.getOriginalFilename(); // Solo el nombre del archivo
         }
         return "default.jpg";
     }
