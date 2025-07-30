@@ -1,9 +1,7 @@
 package com.thekingmoss.web.controller;
 
-import com.thekingmoss.application.dto.productoImagen.ProductoImagenRequestDto;
 import com.thekingmoss.application.dto.productoImagen.ProductoImagenResponse;
 import com.thekingmoss.application.service.IProductoImagenService;
-import com.thekingmoss.application.service.UploadFileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +15,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductoImagenController {
     private final IProductoImagenService productoImagenService;
-    private final UploadFileService upload;
 
     @GetMapping
     public List<ProductoImagenResponse> listarProductosImagenes() {
