@@ -11,6 +11,7 @@ import com.thekingmoss.application.service.UploadFileService;
 import com.thekingmoss.domain.entity.Producto;
 import com.thekingmoss.domain.entity.ProductoImagen;
 import com.thekingmoss.domain.repository.IProductoImagenRepository;
+import com.thekingmoss.domain.repository.IProductoRepository;
 import com.thekingmoss.web.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductoImagenServiceImpl implements IProductoImagenService {
     private final IProductoImagenRepository productoImagenRepository;
-    private final IProductoService productoService;
+    //private final IProductoService productoService;
+    private final IProductoRepository productoRepository;
     private final ProductoMapper productoMapper;
     private final ProductoImagenMapper productoImagenMapper;
 
@@ -39,23 +41,20 @@ public class ProductoImagenServiceImpl implements IProductoImagenService {
 
     @Override
     public ProductoImagenResponse crearProductoImagen(MultipartFile imagen, Long productoId) throws IOException {
-        // Guardar la imagen y obtener la URL
+        // Guardar la imagen
         String imagenUrl = upload.saveImage(imagen);
 
-        // Buscar el producto
-        ProductoResponseDto productoResponseDto = productoService.buscarProductoPorId(productoId);
-        Producto producto = productoMapper.toEntityProducto(productoResponseDto);
+        // Buscar el producto DIRECTAMENTE desde el repositorio (sin usar el servicio)
+        Producto producto = productoRepository.findById(productoId)
+                .orElseThrow(() -> new ResourceNotFoundException("Producto no encontrado con ID: " + productoId));
 
-        // Crear la entidad ProductoImagen
+        // Crear la imagen
         ProductoImagen productoImagen = ProductoImagen.builder()
                 .imagenUrl(imagenUrl)
                 .producto(producto)
                 .build();
 
-        // Guardar en base de datos
         ProductoImagen creado = productoImagenRepository.save(productoImagen);
-
-        // Mapear a DTO y devolver
         return productoImagenMapper.toDto(creado);
     }
 
@@ -76,16 +75,14 @@ public class ProductoImagenServiceImpl implements IProductoImagenService {
         // Elimina la imagen antigua si se proporciona una nueva
         if (nuevaImagen != null && !nuevaImagen.isEmpty()) {
             String nombreAntiguo = productoImagen.getImagenUrl().substring(productoImagen.getImagenUrl().lastIndexOf('/') + 1);
-            upload.deleteImage(nombreAntiguo); // Elimina el archivo físico
-
-            // Guarda la nueva imagen
+            upload.deleteImage(nombreAntiguo);
             String nuevaUrl = upload.saveImage(nuevaImagen);
             productoImagen.setImagenUrl(nuevaUrl);
         }
 
-        // Busca el nuevo producto (tu servicio ya lanza excepción si no existe)
-        ProductoResponseDto productoResponseDto = productoService.buscarProductoPorId(nuevoProductoId);
-        Producto producto = productoMapper.toEntityProducto(productoResponseDto); // Asegúrate de que este mapeo esté bien definido
+        // Busca el nuevo producto usando el repositorio (sin servicio)
+        Producto producto = productoRepository.findById(nuevoProductoId)
+                .orElseThrow(() -> new ResourceNotFoundException("Producto no encontrado con ID: " + nuevoProductoId));
 
         // Actualiza el producto asociado
         productoImagen.setProducto(producto);

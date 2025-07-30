@@ -6,13 +6,16 @@ import com.thekingmoss.application.dto.producto.ProductoResponseDto;
 import com.thekingmoss.application.mapper.categoria.CategoriaMapper;
 import com.thekingmoss.application.mapper.producto.ProductoMapper;
 import com.thekingmoss.application.service.ICategoriaService;
+import com.thekingmoss.application.service.IProductoImagenService;
 import com.thekingmoss.application.service.IProductoService;
 import com.thekingmoss.domain.entity.Categoria;
 import com.thekingmoss.domain.entity.Producto;
+import com.thekingmoss.domain.entity.ProductoImagen;
 import com.thekingmoss.domain.repository.IProductoRepository;
 import com.thekingmoss.web.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,7 +26,7 @@ public class ProductoServiceImpl implements IProductoService {
     private final ProductoMapper productoMapper;
     private final ICategoriaService categoriaService;
     private final CategoriaMapper categoriaMapper;
-
+    private final IProductoImagenService productoImagenService;
 
     @Override
     public List<ProductoResponseDto> listarProductos() {
@@ -73,10 +76,23 @@ public class ProductoServiceImpl implements IProductoService {
     }
 
     @Override
+    @Transactional
     public void eliminarProducto(Long id) {
+        // verificar si el producto existe
         if(!productoRepository.existsById(id)) {
             throw new ResourceNotFoundException("Producto no encontrado" + id);
         }
+
+        // buscar el producto con sus imagenes
+        Producto producto = productoRepository.findById(id)
+                        .orElseThrow(() -> new ResourceNotFoundException("Producto no encontrado con ID:" + id));
+
+        // eliminar cada imagen asociada (elimina el archivo fisico + registro)
+        for (ProductoImagen imagen : producto.getProductoImagenes()) {
+            productoImagenService.eliminarProductoImagen(imagen.getProductoImagenId());
+        }
+
+        // eliminar el producto (las imagenes ya estan eliminadas)
         productoRepository.deleteById(id);
     }
 }
