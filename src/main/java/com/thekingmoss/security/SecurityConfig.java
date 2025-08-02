@@ -73,8 +73,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/api/direccion/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
                         .requestMatchers(HttpMethod.DELETE, "/api/direccion/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
                         //Producto Imagen
-                        .requestMatchers(HttpMethod.GET, "/api/productoImagen").hasAuthority("ROLE_ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/api/productoImagen/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+                        .requestMatchers(HttpMethod.GET, "/api/productoImagen").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/productoImagen/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/productoImagen").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/productoImagen/**").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/productoImagen/**").hasAuthority("ROLE_ADMIN")
