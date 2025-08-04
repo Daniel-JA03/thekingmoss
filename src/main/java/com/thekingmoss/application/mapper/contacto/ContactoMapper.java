@@ -14,6 +14,7 @@ public class ContactoMapper {
                 .email(contacto.getEmail())
                 .asunto(contacto.getAsunto())
                 .mensaje(contacto.getMensaje())
+                .estado(contacto.getEstado())
                 .fechaCreacion(contacto.getFechaCreacion())
                 .build();
     }

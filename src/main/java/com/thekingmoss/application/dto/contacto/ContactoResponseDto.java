@@ -1,5 +1,6 @@
 package com.thekingmoss.application.dto.contacto;
 
+import com.thekingmoss.domain.entity.types.EstadoMensaje;
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,6 +14,6 @@ public class ContactoResponseDto {
     private String email;
     private String asunto;
     private String mensaje;
-    private boolean leido;
+    private EstadoMensaje estado;
     private LocalDateTime fechaCreacion;
 }
