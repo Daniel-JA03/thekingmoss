@@ -31,6 +31,9 @@ public class Contacto {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String mensaje;
 
+    @Column(nullable = false)
+    private boolean leido = false;
+
     // Fecha en que se creó el registro. No debe modificarse una vez creado.
     @Column(nullable = false, updatable = false)
     private LocalDateTime fechaCreacion;
