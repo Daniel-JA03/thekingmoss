@@ -13,5 +13,6 @@ public class ContactoResponseDto {
     private String email;
     private String asunto;
     private String mensaje;
+    private boolean leido;
     private LocalDateTime fechaCreacion;
 }
