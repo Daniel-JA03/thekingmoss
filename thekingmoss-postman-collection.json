@@ -243,7 +243,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/producto/4",
+							"raw": "http://localhost:8080/api/producto/12",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -252,7 +252,7 @@
 							"path": [
 								"api",
 								"producto",
-								"4"
+								"12"
 							]
 						}
 					},
@@ -685,7 +685,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"daniel123\",\r\n    \"password\": \"TuClaveSuperSecretaMuyLarga1234567890\"\r\n}",
+							"raw": "{\r\n    \"username\": \"diegol123\",\r\n    \"password\": \"TuClaveSuperSecretaMuyLarga1234567890\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1039,7 +1039,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"pais\": \"Peru\",\r\n    \"estado\": \"ACTIVO\",\r\n    \"provincia\": \"Lima\",\r\n    \"distrito\": \"Tomas Valle\",\r\n    \"referencia\": \"Cerca al centro comercial Plaza Norte\",\r\n    \"tipoDireccion\": \"TRABAJO\",\r\n    \"usuarioId\": 1\r\n}",
+							"raw": "{\r\n    \"pais\": \"Peru\",\r\n    \"estado\": \"ACTIVO\",\r\n    \"provincia\": \"Lima\",\r\n    \"distrito\": \"Tomas Valle\",\r\n    \"referencia\": \"Cerca al centro comercial Plaza Norte\",\r\n    \"tipoDireccion\": \"TRABAJO\",\r\n    \"usuarioId\": 4 \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1078,7 +1078,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"pais\": \"Peru\",\r\n    \"estado\": \"ACTIVO\",\r\n    \"provincia\": \"Lima\",\r\n    \"distrito\": \"Tomas Valle actualizado\",\r\n    \"referencia\": \"Cerca al centro comercial Plaza Norte\",\r\n    \"tipoDireccion\": \"TRABAJO\",\r\n    \"usuarioId\": 2\r\n}",
+							"raw": "{\r\n    \"pais\": \"Peru\",\r\n    \"estado\": \"DESACTIVO\",\r\n    \"provincia\": \"Lima\",\r\n    \"distrito\": \"Tomas Valle actualizado\",\r\n    \"referencia\": \"Cerca al centro comercial Plaza Norte\",\r\n    \"tipoDireccion\": \"TRABAJO\",\r\n    \"usuarioId\": 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1086,7 +1086,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/direccion/4",
+							"raw": "http://localhost:8080/api/direccion/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1095,7 +1095,7 @@
 							"path": [
 								"api",
 								"direccion",
-								"4"
+								"5"
 							]
 						}
 					},
@@ -1196,7 +1196,7 @@
 								},
 								{
 									"key": "productoId",
-									"value": "1",
+									"value": "12",
 									"type": "text"
 								}
 							]
@@ -1237,17 +1237,17 @@
 								{
 									"key": "img",
 									"type": "file",
-									"src": "postman-cloud:///1f03465d-2bf7-47b0-b268-54b06aa82acc"
+									"src": "postman-cloud:///1f05ed26-6a22-41d0-9491-2c7c80a761c4"
 								},
 								{
 									"key": "productoId",
-									"value": "1",
+									"value": "2",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/productoImagen/9",
+							"raw": "http://localhost:8080/api/productoImagen/12",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1256,7 +1256,7 @@
 							"path": [
 								"api",
 								"productoImagen",
-								"9"
+								"12"
 							]
 						}
 					},
@@ -1296,7 +1296,7 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/productoImagen/9",
+							"raw": "http://localhost:8080/api/productoImagen/10",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1305,7 +1305,7 @@
 							"path": [
 								"api",
 								"productoImagen",
-								"9"
+								"10"
 							]
 						}
 					},
@@ -1342,7 +1342,7 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/productoImagen/9",
+							"raw": "http://localhost:8080/api/productoImagen/19",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1351,7 +1351,7 @@
 							"path": [
 								"api",
 								"productoImagen",
-								"9"
+								"19"
 							]
 						}
 					},
@@ -1437,6 +1437,80 @@
 								"10",
 								"detalles",
 								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contacto",
+			"item": [
+				{
+					"name": "listarContactos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token_jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numeroDocumentoIdentidad\": \"08456581\",\r\n    \"tipoDocumentoIdentidad\": \"DNI\",\r\n    \"usuarioId\": 2\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/contacto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"contacto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "guardarContacto",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Ana Lopez\",\r\n    \"email\": \"anaLop@gmail.com\",\r\n    \"asunto\": 2,\r\n    \"mensaje\": \"Tiene un precio adicional el envio a domicilio?\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/contacto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"contacto"
 							]
 						}
 					},
