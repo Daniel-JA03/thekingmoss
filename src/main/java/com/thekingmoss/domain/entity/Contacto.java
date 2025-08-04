@@ -31,6 +31,18 @@ public class Contacto {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String mensaje;
 
-    @Column(nullable = false)
-    private LocalDateTime fechaCreacion = LocalDateTime.now();
+    // Fecha en que se creó el registro. No debe modificarse una vez creado.
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime fechaCreacion;
+
+    /**
+     * Asigna la fecha de creación automáticamente antes de guardar por primera vez.
+     * Es útil cuando se usan builders o mappers que podrían omitir este campo.
+     */
+    @PrePersist
+    public void asignarFechaCreacion() {
+        if (this.fechaCreacion == null) {
+            this.fechaCreacion = LocalDateTime.now();
+        }
+    }
 }
