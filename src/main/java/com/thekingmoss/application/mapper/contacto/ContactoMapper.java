@@ -25,6 +25,7 @@ public class ContactoMapper {
                 .email(requestDto.getEmail())
                 .asunto(requestDto.getAsunto())
                 .mensaje(requestDto.getMensaje())
+                .estado(requestDto.getEstado())
                 .build();
     }
 }
