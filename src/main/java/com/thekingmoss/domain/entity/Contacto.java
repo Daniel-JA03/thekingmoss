@@ -1,5 +1,6 @@
 package com.thekingmoss.domain.entity;
 
+import com.thekingmoss.domain.entity.types.EstadoMensaje;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,7 +33,8 @@ public class Contacto {
     private String mensaje;
 
     @Column(nullable = false)
-    private boolean leido = false;
+    @Enumerated(EnumType.STRING)
+    private EstadoMensaje estado = EstadoMensaje.NUEVO;
 
     // Fecha en que se creó el registro. No debe modificarse una vez creado.
     @Column(nullable = false, updatable = false)
