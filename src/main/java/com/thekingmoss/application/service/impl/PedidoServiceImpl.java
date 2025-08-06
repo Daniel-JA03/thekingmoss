@@ -42,6 +42,16 @@ public class PedidoServiceImpl implements IPedidoService {
                 .map(detalleDto -> {
                     Producto producto = productoRepository.findById(detalleDto.getProductoId())
                             .orElseThrow(() -> new ResourceNotFoundException("No existe el producto: " + detalleDto.getProductoId()));
+
+                    // validar stock
+                    if (producto.getStock() < detalleDto.getCantidad()) {
+                        throw new ResourceNotFoundException("Stock insuficiente para el producto: " + producto.getNombre());
+                    }
+
+                    // reducir stock
+                    producto.setStock(producto.getStock() - detalleDto.getCantidad());
+                    productoRepository.save(producto); // guardar producto con stock actualizado
+
                     return detallePedidoMapper.toEntity(detalleDto, guardarPedido, producto);
                 })
                 .collect(Collectors.toList());

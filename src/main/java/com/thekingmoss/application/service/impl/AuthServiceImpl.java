@@ -41,12 +41,18 @@ public class AuthServiceImpl implements IAuthService {
         UserDetails user = userDetailsService.loadUserByUsername(loginRequestDto.getUsername());
         String token = jwtUtil.generateToken(user);
         long expiration = jwtUtil.extractExpiration(token).getTime();
+
+        // obtener el usuario completo para obtener el ID
+        Usuario usuario = usuarioRepository.findByUsername(loginRequestDto.getUsername())
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
         return LoginResponseDto.builder()
                 .token(token)
                 .username(user.getUsername())
                 .roles(user.getAuthorities().stream()
                         .map(r -> r.getAuthority())
                         .toList())
+                .usuarioId(usuario.getId())
                 .expirateAt(expiration)
                 .build();
     }
