@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+// TABLA transaccional carrito (temporal)
 @Entity
 @Data
 @Table(name = "carrito")
