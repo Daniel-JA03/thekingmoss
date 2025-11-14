@@ -8,7 +8,7 @@ public class PasswordChecker {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
         // Prueba con posibles contraseñas (usa las que hayas usado al registrar)
-        System.out.println("¿Coincide con 'TuClavesuperSecretaWuyLarga1234567899'? "
+        System.out.println("¿Coincide con 'TuClaveSuperSecretaMuyLarga1234567890'? "
                 + encoder.matches("TuClaveSuperSecretaMuyLarga1234567890", hash));
     }
 }
