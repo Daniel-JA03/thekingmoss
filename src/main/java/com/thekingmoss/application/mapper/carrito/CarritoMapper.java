@@ -1,9 +1,11 @@
 package com.thekingmoss.application.mapper.carrito;
 
+import com.thekingmoss.application.dto.carrito.CarritoRequestDto;
 import com.thekingmoss.application.dto.carrito.CarritoResponseDto;
 import com.thekingmoss.application.dto.carrito.ProductoCarritoDto;
 import com.thekingmoss.domain.entity.Carrito;
 import com.thekingmoss.domain.entity.Producto;
+import com.thekingmoss.domain.entity.Usuario;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -40,5 +42,13 @@ public class CarritoMapper {
         return carritos.stream()
                 .map(this::toDto)
                 .collect(Collectors.toList());
+    }
+
+    public Carrito toEntity(Usuario usuario, Producto producto, CarritoRequestDto request) {
+        return Carrito.builder()
+                .usuario(usuario)
+                .producto(producto)
+                .cantidad(request.getCantidad())
+                .build();
     }
 }
