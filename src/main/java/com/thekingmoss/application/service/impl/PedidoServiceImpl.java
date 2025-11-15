@@ -8,10 +8,7 @@ import com.thekingmoss.application.mapper.detallePedido.DetallePedidoMapper;
 import com.thekingmoss.application.mapper.pedido.PedidoMapper;
 import com.thekingmoss.application.service.IPedidoService;
 import com.thekingmoss.domain.entity.*;
-import com.thekingmoss.domain.repository.IDetallePedidoRepository;
-import com.thekingmoss.domain.repository.IPedidoRepository;
-import com.thekingmoss.domain.repository.IProductoRepository;
-import com.thekingmoss.domain.repository.IUsuarioRepository;
+import com.thekingmoss.domain.repository.*;
 import com.thekingmoss.web.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -29,6 +26,7 @@ public class PedidoServiceImpl implements IPedidoService {
     private final IDetallePedidoRepository detallePedidoRepository;
     private final PedidoMapper pedidoMapper;
     private final DetallePedidoMapper detallePedidoMapper;
+    private final ICarritoRepository carritoRepository;
 
     @Override
     @Transactional
@@ -56,6 +54,9 @@ public class PedidoServiceImpl implements IPedidoService {
                 })
                 .collect(Collectors.toList());
         detallePedidoRepository.saveAll(detallePedidos);
+
+        // vaciar el carrito del usuario después de crear el pedido
+        carritoRepository.deleteByUsuarioId(usuario.getId());
 
         List<DetallePedidoResponseDto> detalleDto = detallePedidos.stream()
                 .map(detallePedidoMapper::toDto)
