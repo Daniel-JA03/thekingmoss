@@ -13,14 +13,17 @@ import java.util.stream.Collectors;
 
 @Component
 public class CarritoMapper {
+    private static final String BACKEND_URL = "http://localhost:8080";
 
     public CarritoResponseDto toDto(Carrito carrito) {
         if (carrito == null) return null;
 
         Producto p = carrito.getProducto();
-        String imagenUrl = p.getProductoImagenes().isEmpty()
-                ? "/imagesProducts/default.jpg"
+        String imagenNombre = p.getProductoImagenes().isEmpty()
+                ? "default.jpg"
                 : p.getProductoImagenes().get(0).getImagenUrl();
+
+        String imagenUrl = BACKEND_URL + "/imagesProducts/" + imagenNombre;
 
         ProductoCarritoDto productoDto = ProductoCarritoDto.builder()
                 .productoId(p.getProductoId())
