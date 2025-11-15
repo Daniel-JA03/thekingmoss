@@ -41,46 +41,53 @@ public class SecurityConfig {
                         .requestMatchers("/imagesProducts/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/categoria/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/producto/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/pedidos/**").permitAll()
-                        // ADMINISTRADOR
-                        //Categoria
+
+                        // ADMINISTRADOR - Categoria
                         .requestMatchers(HttpMethod.POST, "/api/categoria").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/categoria/**").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/categoria/**").hasAuthority("ROLE_ADMIN")
-                        //Producto
+
+                        // Producto
                         .requestMatchers(HttpMethod.POST, "/api/producto").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/producto/**").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/producto/**").hasAuthority("ROLE_ADMIN")
-                        //Pedido
+
+                        // Pedido (todos protegidos)
+                        .requestMatchers(HttpMethod.GET, "/api/pedidos/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
                         .requestMatchers(HttpMethod.POST, "/api/pedidos").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
                         .requestMatchers(HttpMethod.PUT, "/api/pedidos/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
                         .requestMatchers(HttpMethod.DELETE, "/api/pedidos/**").hasAuthority("ROLE_ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/pedidos/{pedidoId}/{productoId}").hasAuthority("ROLE_ADMIN")
-                        //DetallePedido
-                        .requestMatchers(HttpMethod.GET, "/api/pedidos/{pedidoId}/detalles").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
-                        .requestMatchers(HttpMethod.POST, "/api/pedidos/{pedidoId}/detalles").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
-                        .requestMatchers(HttpMethod.PUT, "/api/pedidos/{pedidoId}/detalles/{productoId}").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
-                        //DocumentoIdentidad
+
+                        // DocumentoIdentidad
                         .requestMatchers(HttpMethod.POST, "/api/documentoIdentidad").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/documentoIdentidad/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
                         .requestMatchers(HttpMethod.PUT, "/api/documentoIdentidad/**").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/documentoIdentidad/**").hasAuthority("ROLE_ADMIN")
-                        //Direccion
+
+                        // Direccion
                         .requestMatchers(HttpMethod.GET, "/api/direccion").hasAuthority("ROLE_ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/api/direccion/usuario/{id}").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
-                        .requestMatchers(HttpMethod.GET, "/api/direccion/{id}").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+                        .requestMatchers(HttpMethod.GET, "/api/direccion/usuario/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
                         .requestMatchers(HttpMethod.POST, "/api/direccion").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
                         .requestMatchers(HttpMethod.PUT, "/api/direccion/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
                         .requestMatchers(HttpMethod.DELETE, "/api/direccion/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
-                        //Producto Imagen
+
+                        // Producto Imagen
                         .requestMatchers(HttpMethod.GET, "/api/productoImagen").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/productoImagen/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/productoImagen").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/productoImagen/**").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/productoImagen/**").hasAuthority("ROLE_ADMIN")
+
                         // Contacto
                         .requestMatchers(HttpMethod.GET, "/api/contacto").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/contacto").permitAll()
+
+                        // Carrito
+                        .requestMatchers(HttpMethod.GET, "/api/carrito/usuario/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+                        .requestMatchers(HttpMethod.POST, "/api/carrito/usuario/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")  // agrega
+                        .requestMatchers(HttpMethod.PUT, "/api/carrito/usuario/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")   // actualiza
+                        .requestMatchers(HttpMethod.DELETE, "/api/carrito/usuario/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER") // producto y vaciar
+
                         .anyRequest().authenticated()
                 )
                 .authenticationProvider(provider())
