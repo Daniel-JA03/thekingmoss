@@ -137,8 +137,8 @@ public class PedidoServiceImpl implements IPedidoService {
             throw new ResourceNotFoundException("Usuario no encontrado con ID: " + usuarioId);
         }
 
-        // Obtener pedidos del usuario
-        List<Pedido> pedidos = pedidoRepository.findByUsuarioId(usuarioId);
+        // Obtener pedidos del usuario descendentes por fecha
+        List<Pedido> pedidos = pedidoRepository.findByUsuarioIdOrderByFechaPedidoDesc(usuarioId);
 
         // convertir a DTO
         return pedidos.stream()
