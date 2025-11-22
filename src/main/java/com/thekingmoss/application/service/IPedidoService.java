@@ -15,4 +15,6 @@ public interface IPedidoService {
     void eliminarPedido(Long id);
     DetallePedidoResponseDto agregarDetallePedido(Long id, DetallePedidoRequestDto requestDto);
     void eliminarDetallePedido(Long pedidoId, Long productoId);
+
+    List<PedidoResponseDto> listarPedidosPorUsuario(Long usuarioId);
 }

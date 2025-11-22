@@ -128,4 +128,21 @@ public class PedidoServiceImpl implements IPedidoService {
             throw new ResourceNotFoundException("Pedido no encontrado" + detallePedidoId);
         detallePedidoRepository.deleteById(detallePedidoId);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<PedidoResponseDto> listarPedidosPorUsuario(Long usuarioId) {
+        // Validar que el  usuario existe
+        if (!usuarioRepository.existsById(usuarioId)) {
+            throw new ResourceNotFoundException("Usuario no encontrado con ID: " + usuarioId);
+        }
+
+        // Obtener pedidos del usuario
+        List<Pedido> pedidos = pedidoRepository.findByUsuarioId(usuarioId);
+
+        // convertir a DTO
+        return pedidos.stream()
+                .map(pedidoMapper::toDto)
+                .collect(Collectors.toList());
+    }
 }

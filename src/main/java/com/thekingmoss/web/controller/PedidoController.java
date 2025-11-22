@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+
 @RestController
 @RequestMapping("/api/pedidos")
 @RequiredArgsConstructor
@@ -53,5 +55,10 @@ public class PedidoController {
     public ResponseEntity<Void> eliminarDetallePedido(@PathVariable Long pedidoId, @PathVariable Long productoId) {
         pedidoService.eliminarDetallePedido(pedidoId, productoId);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/usuario/{usuarioId}")
+    public ResponseEntity<List<PedidoResponseDto>> listarPedidosPorUsuario(@PathVariable Long usuarioId) {
+        return ResponseEntity.ok(pedidoService.listarPedidosPorUsuario(usuarioId));
     }
 }
