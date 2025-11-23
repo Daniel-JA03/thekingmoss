@@ -21,4 +21,6 @@ jwt:
   secret: ${SECRET}
   expiration: 36000000
 
-
+stripe:
+  secret:
+    key: ${STRIPE_SECRET_KEY}
