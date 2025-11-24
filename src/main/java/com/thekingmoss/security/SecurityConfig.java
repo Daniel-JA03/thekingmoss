@@ -88,6 +88,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/api/carrito/usuario/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")   // actualiza
                         .requestMatchers(HttpMethod.DELETE, "/api/carrito/usuario/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER") // producto y vaciar
 
+                        // Pago 
                         .anyRequest().authenticated()
                 )
                 .authenticationProvider(provider())
