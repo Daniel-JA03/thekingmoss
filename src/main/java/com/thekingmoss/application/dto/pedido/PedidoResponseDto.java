@@ -19,6 +19,8 @@ public class PedidoResponseDto {
     private TipoEstadoPedido tipoEstadoPedido;
     private Long usuarioId;
 
+    private String stripePaymentId;
+
     @Builder.Default
     private List<DetallePedidoResponseDto> detalle = List.of();
 }

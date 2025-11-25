@@ -2,6 +2,7 @@ package com.thekingmoss.application.service;
 
 import com.thekingmoss.application.dto.detallePedido.DetallePedidoRequestDto;
 import com.thekingmoss.application.dto.detallePedido.DetallePedidoResponseDto;
+import com.thekingmoss.application.dto.payment.PaymentConfirmationRequestDto;
 import com.thekingmoss.application.dto.pedido.PedidoRequestDto;
 import com.thekingmoss.application.dto.pedido.PedidoResponseDto;
 
@@ -17,4 +18,6 @@ public interface IPedidoService {
     void eliminarDetallePedido(Long pedidoId, Long productoId);
 
     List<PedidoResponseDto> listarPedidosPorUsuario(Long usuarioId);
+
+    void confirmPayment(PaymentConfirmationRequestDto confirmationRequest);
 }

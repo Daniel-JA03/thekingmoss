@@ -49,6 +49,7 @@ public class AuthServiceImpl implements IAuthService {
         return LoginResponseDto.builder()
                 .token(token)
                 .username(user.getUsername())
+                .email(usuario.getEmail())
                 .roles(user.getAuthorities().stream()
                         .map(r -> r.getAuthority())
                         .toList())

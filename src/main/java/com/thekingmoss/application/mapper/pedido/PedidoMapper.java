@@ -32,6 +32,9 @@ public class PedidoMapper {
                 .informacionPedido(pedido.getInformacionPedido())
                 .instruccionEntrega(pedido.getInstruccionEntrega())
                 .tipoEstadoPedido(pedido.getTipoEstadoPedido())
+
+                .stripePaymentId(pedido.getStripePaymentId())
+
                 .usuarioId(pedido.getUsuario().getId())
                 .detalle(pedido.getDetallePedidos().stream()
                         .map(this::toDetalleDto)

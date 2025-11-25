@@ -2,12 +2,14 @@ package com.thekingmoss.application.service.impl;
 
 import com.thekingmoss.application.dto.detallePedido.DetallePedidoRequestDto;
 import com.thekingmoss.application.dto.detallePedido.DetallePedidoResponseDto;
+import com.thekingmoss.application.dto.payment.PaymentConfirmationRequestDto;
 import com.thekingmoss.application.dto.pedido.PedidoRequestDto;
 import com.thekingmoss.application.dto.pedido.PedidoResponseDto;
 import com.thekingmoss.application.mapper.detallePedido.DetallePedidoMapper;
 import com.thekingmoss.application.mapper.pedido.PedidoMapper;
 import com.thekingmoss.application.service.IPedidoService;
 import com.thekingmoss.domain.entity.*;
+import com.thekingmoss.domain.entity.types.TipoEstadoPedido;
 import com.thekingmoss.domain.repository.*;
 import com.thekingmoss.web.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -144,5 +146,26 @@ public class PedidoServiceImpl implements IPedidoService {
         return pedidos.stream()
                 .map(pedidoMapper::toDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional
+    public void confirmPayment(PaymentConfirmationRequestDto confirmationRequest) {
+        Pedido pedido = pedidoRepository.findById(confirmationRequest.getPedidoId())
+                .orElseThrow(() -> new ResourceNotFoundException("Pedido no encontrado" + confirmationRequest.getPedidoId()));
+
+        // validar que el pedido aun no esté pagado
+        if (pedido.getTipoEstadoPedido() == TipoEstadoPedido.PAGADO) {
+            throw new IllegalStateException("El pedido ya fue pagado: ");
+        }
+
+        // almacenar el  ID de Stripe
+        pedido.setStripePaymentId(confirmationRequest.getStripePaymentId());
+
+        // actualizar estado a PAGADO
+        pedido.setTipoEstadoPedido(TipoEstadoPedido.PAGADO);
+
+        // Guardar la actualización
+        pedidoRepository.save(pedido);
     }
 }
