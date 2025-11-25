@@ -10,6 +10,7 @@ import java.util.List;
 public class LoginResponseDto {
     private String token;
     private String username;
+    private String email;
     private List<String> roles;
     private Long usuarioId;
     private long expirateAt;

@@ -2,6 +2,7 @@ package com.thekingmoss.web.controller;
 
 import com.thekingmoss.application.dto.detallePedido.DetallePedidoRequestDto;
 import com.thekingmoss.application.dto.detallePedido.DetallePedidoResponseDto;
+import com.thekingmoss.application.dto.payment.PaymentConfirmationRequestDto;
 import com.thekingmoss.application.dto.pedido.PedidoRequestDto;
 import com.thekingmoss.application.dto.pedido.PedidoResponseDto;
 import com.thekingmoss.application.service.IPedidoService;
@@ -60,5 +61,12 @@ public class PedidoController {
     @GetMapping("/usuario/{usuarioId}")
     public ResponseEntity<List<PedidoResponseDto>> listarPedidosPorUsuario(@PathVariable Long usuarioId) {
         return ResponseEntity.ok(pedidoService.listarPedidosPorUsuario(usuarioId));
+    }
+
+
+    @PostMapping("/confirm-payment")
+    public ResponseEntity<Void> confirmPayment(@RequestBody PaymentConfirmationRequestDto requestDto) {
+        pedidoService.confirmPayment(requestDto);
+        return ResponseEntity.ok().build();
     }
 }

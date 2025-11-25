@@ -22,6 +22,9 @@ public class Pedido {
     @EqualsAndHashCode.Include // Incluye solo el ID en hashCode/equals
     private Long pedidoId;
 
+    @Column(name = "stripe_payment_id")
+    private String stripePaymentId; // Almacena el ID de transacción de Stripe
+
     @Column(name = "fecha_pedido", nullable = false)
     private Date fechaPedido;
 
