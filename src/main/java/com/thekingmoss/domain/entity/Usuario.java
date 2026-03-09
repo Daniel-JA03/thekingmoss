@@ -39,6 +39,12 @@ public class Usuario {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(name = "failed_attempts", nullable = false)
+    private int failedAttempts; // intentos fallidos de inicio de sesión
+
+    @Column(name = "account_locked", nullable = false)
+    private boolean accountLocked; // indica si la cuenta está bloqueada
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "usuario_roles",

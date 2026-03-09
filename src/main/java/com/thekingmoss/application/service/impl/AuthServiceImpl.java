@@ -11,6 +11,7 @@ import com.thekingmoss.domain.repository.IUsuarioRepository;
 import com.thekingmoss.security.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -32,19 +33,44 @@ public class AuthServiceImpl implements IAuthService {
 
     @Override
     public LoginResponseDto authenticate(LoginRequestDto loginRequestDto) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginRequestDto.getUsername(),
-                        loginRequestDto.getPassword()
-                )
-        );
-        UserDetails user = userDetailsService.loadUserByUsername(loginRequestDto.getUsername());
-        String token = jwtUtil.generateToken(user);
-        long expiration = jwtUtil.extractExpiration(token).getTime();
+        // Controlar intentos fallidos y bloqueo de cuenta
 
         // obtener el usuario completo para obtener el ID
         Usuario usuario = usuarioRepository.findByUsername(loginRequestDto.getUsername())
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        // verificar si la cuenta está bloqueada
+        if (usuario.isAccountLocked()) {
+            throw new IllegalStateException("Cuenta bloqueada. Contáctese con el administrador.");
+        }
+
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            loginRequestDto.getUsername(),
+                            loginRequestDto.getPassword()
+                    )
+            );
+        } catch (BadCredentialsException ex) {
+            int attempts = usuario.getFailedAttempts() + 1;
+            usuario.setFailedAttempts(attempts);
+
+            if (attempts >= 3) {
+                usuario.setAccountLocked(true);
+            }
+
+            usuarioRepository.save(usuario);
+
+            throw new IllegalArgumentException("Credenciales incorrectas");
+        }
+
+        // login correcto, resetear intentos fallidos
+        usuario.setFailedAttempts(0);
+        usuarioRepository.save(usuario);
+
+        UserDetails user = userDetailsService.loadUserByUsername(loginRequestDto.getUsername());
+        String token = jwtUtil.generateToken(user);
+        long expiration = jwtUtil.extractExpiration(token).getTime();
 
         return LoginResponseDto.builder()
                 .token(token)
@@ -83,8 +109,23 @@ public class AuthServiceImpl implements IAuthService {
                 .telefono(registrarRequestDto.getTelefono())
                 .email(registrarRequestDto.getEmail())
                 .roles(Set.of(rolUser))
+                // inicializamos los campos de seguridad
+                .failedAttempts(0)
+                .accountLocked(false)
                 .build();
         usuarioRepository.save(usuario);
         return "Usuario Registrado exitosamente";
+    }
+
+    // Método para desbloquear un usuario
+    @Override
+    public void unlockUser(String username) {
+        Usuario usuario = usuarioRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        usuario.setAccountLocked(false);
+        usuario.setFailedAttempts(0);
+
+        usuarioRepository.save(usuario);
     }
 }
