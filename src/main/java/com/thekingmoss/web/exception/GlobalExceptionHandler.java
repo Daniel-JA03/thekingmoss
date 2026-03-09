@@ -27,4 +27,10 @@ public class GlobalExceptionHandler {
         ErrorResponse error = new ErrorResponse("Datos inválidos", ex.getMessage());
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST); // 400
     }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> handleGeneral(Exception ex) {
+        ErrorResponse error = new ErrorResponse("Error interno", ex.getMessage());
+        return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
