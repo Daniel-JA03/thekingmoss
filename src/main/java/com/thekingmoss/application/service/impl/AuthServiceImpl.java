@@ -116,4 +116,16 @@ public class AuthServiceImpl implements IAuthService {
         usuarioRepository.save(usuario);
         return "Usuario Registrado exitosamente";
     }
+
+    // Método para desbloquear un usuario
+    @Override
+    public void unlockUser(String username) {
+        Usuario usuario = usuarioRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        usuario.setAccountLocked(false);
+        usuario.setFailedAttempts(0);
+
+        usuarioRepository.save(usuario);
+    }
 }
