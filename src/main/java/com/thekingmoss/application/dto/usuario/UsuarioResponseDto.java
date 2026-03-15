@@ -15,4 +15,5 @@ public class UsuarioResponseDto {
     private String telefono;
     private String email;
     private List<String> roles;
+    private boolean accountLocked;
 }
