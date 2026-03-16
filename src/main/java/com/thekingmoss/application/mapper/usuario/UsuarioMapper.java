@@ -24,6 +24,7 @@ public class UsuarioMapper {
                 .roles(usuario.getRoles().stream()
                         .map(Rol::getName)
                         .collect(Collectors.toList()))
+                .accountLocked(usuario.isAccountLocked())
                 .build();
     }
 

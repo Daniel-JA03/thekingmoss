@@ -31,16 +31,4 @@ public class AuthController {
         response.put("message", "Usuario registrado exitosamente");
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
-
-    @PutMapping("/unlock/{username}")
-    public ResponseEntity<Map<String, String>> unlockUser(@PathVariable String username) {
-
-        service.unlockUser(username);
-
-        Map<String, String> response = new HashMap<>();
-        response.put("message", "Usuario desbloqueado correctamente");
-
-        return ResponseEntity.ok(response);
-    }
-
 }

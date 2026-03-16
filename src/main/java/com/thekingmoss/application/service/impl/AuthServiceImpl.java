@@ -23,6 +23,9 @@ import java.util.Set;
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements IAuthService {
+    // constante para el número máximo de intentos fallidos
+    private static final int MAX_FAILED_ATTEMPTS = 3;
+
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailsService;
     private final JwtUtil jwtUtil;
@@ -55,13 +58,22 @@ public class AuthServiceImpl implements IAuthService {
             int attempts = usuario.getFailedAttempts() + 1;
             usuario.setFailedAttempts(attempts);
 
-            if (attempts >= 3) {
+            int remainingAttempts = MAX_FAILED_ATTEMPTS - attempts; // para mostrar al usuario cuántos intentos le quedan
+
+            if (attempts >= MAX_FAILED_ATTEMPTS) {
                 usuario.setAccountLocked(true);
+                usuarioRepository.save(usuario);
+                throw new IllegalStateException(
+                        "Cuenta bloqueada por múltiples intentos fallidos. Contáctese con el administrador."
+                );
             }
 
             usuarioRepository.save(usuario);
 
-            throw new IllegalArgumentException("Credenciales incorrectas");
+            throw new IllegalArgumentException(
+                    "Credenciales incorrectas. Te quedan " + remainingAttempts +
+                            " intentos antes de que la cuenta sea bloqueada."
+            );
         }
 
         // login correcto, resetear intentos fallidos
@@ -117,15 +129,4 @@ public class AuthServiceImpl implements IAuthService {
         return "Usuario Registrado exitosamente";
     }
 
-    // Método para desbloquear un usuario
-    @Override
-    public void unlockUser(String username) {
-        Usuario usuario = usuarioRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-
-        usuario.setAccountLocked(false);
-        usuario.setFailedAttempts(0);
-
-        usuarioRepository.save(usuario);
-    }
 }
