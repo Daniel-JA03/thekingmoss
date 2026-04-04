@@ -33,4 +33,16 @@ public class GlobalExceptionHandler {
         ErrorResponse error = new ErrorResponse("Error interno", ex.getMessage());
         return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @ExceptionHandler(CuentaBloqueadaException.class)
+    public ResponseEntity<ErrorResponse> handleCuentaBloqueada(CuentaBloqueadaException ex) {
+        ErrorResponse error = new ErrorResponse("Cuenta bloqueada", ex.getMessage());
+        return new ResponseEntity<>(error, HttpStatus.LOCKED); // 423
+    }
+
+    @ExceptionHandler(CredencialesInvalidasException.class)
+    public ResponseEntity<ErrorResponse> handleCredenciales(CredencialesInvalidasException ex) {
+        ErrorResponse error = new ErrorResponse("Credenciales incorrectas", ex.getMessage());
+        return new ResponseEntity<>(error, HttpStatus.UNAUTHORIZED); // 401
+    }
 }
