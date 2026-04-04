@@ -9,6 +9,8 @@ import com.thekingmoss.domain.entity.Usuario;
 import com.thekingmoss.domain.repository.IRolRepository;
 import com.thekingmoss.domain.repository.IUsuarioRepository;
 import com.thekingmoss.security.util.JwtUtil;
+import com.thekingmoss.web.exception.CredencialesInvalidasException;
+import com.thekingmoss.web.exception.CuentaBloqueadaException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -44,7 +46,7 @@ public class AuthServiceImpl implements IAuthService {
 
         // verificar si la cuenta está bloqueada
         if (usuario.isAccountLocked()) {
-            throw new IllegalStateException("Cuenta bloqueada. Contáctese con el administrador.");
+            throw new CuentaBloqueadaException("Cuenta bloqueada. Contáctese con el administrador.");
         }
 
         try {
@@ -63,14 +65,14 @@ public class AuthServiceImpl implements IAuthService {
             if (attempts >= MAX_FAILED_ATTEMPTS) {
                 usuario.setAccountLocked(true);
                 usuarioRepository.save(usuario);
-                throw new IllegalStateException(
+                throw new CuentaBloqueadaException(
                         "Cuenta bloqueada por múltiples intentos fallidos. Contáctese con el administrador."
                 );
             }
 
             usuarioRepository.save(usuario);
 
-            throw new IllegalArgumentException(
+            throw new CredencialesInvalidasException(
                     "Credenciales incorrectas. Te quedan " + remainingAttempts +
                             " intentos antes de que la cuenta sea bloqueada."
             );
