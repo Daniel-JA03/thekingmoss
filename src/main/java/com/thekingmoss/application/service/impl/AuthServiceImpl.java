@@ -3,6 +3,7 @@ package com.thekingmoss.application.service.impl;
 import com.thekingmoss.application.dto.login.LoginRequestDto;
 import com.thekingmoss.application.dto.login.LoginResponseDto;
 import com.thekingmoss.application.dto.registrar.RegistrarRequestDto;
+import com.thekingmoss.application.dto.usuario.UsuarioResponseDto;
 import com.thekingmoss.application.service.IAuthService;
 import com.thekingmoss.domain.entity.Rol;
 import com.thekingmoss.domain.entity.Usuario;
@@ -11,6 +12,7 @@ import com.thekingmoss.domain.repository.IUsuarioRepository;
 import com.thekingmoss.security.util.JwtUtil;
 import com.thekingmoss.web.exception.CredencialesInvalidasException;
 import com.thekingmoss.web.exception.CuentaBloqueadaException;
+import com.thekingmoss.web.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -20,6 +22,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -129,6 +132,30 @@ public class AuthServiceImpl implements IAuthService {
                 .build();
         usuarioRepository.save(usuario);
         return "Usuario Registrado exitosamente";
+    }
+
+    @Override
+    public UsuarioResponseDto buscarCuenta(String dato) {
+        Optional<Usuario> usuarioOpt;
+
+        // detectar si es email o telefono
+        if (dato.contains("@")) {
+            usuarioOpt = usuarioRepository.findByEmail(dato);
+        } else {
+            usuarioOpt = usuarioRepository.findByTelefono(dato);
+        }
+
+        Usuario usuario = usuarioOpt
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "No se ha encontrado ninguna cuenta"
+                ));
+
+        return UsuarioResponseDto.builder()
+                .id(usuario.getId())
+                .username(usuario.getUsername())
+                .email(usuario.getEmail())
+                .telefono(usuario.getTelefono())
+                .build();
     }
 
 }
