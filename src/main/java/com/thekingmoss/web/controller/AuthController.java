@@ -3,6 +3,7 @@ package com.thekingmoss.web.controller;
 import com.thekingmoss.application.dto.login.LoginRequestDto;
 import com.thekingmoss.application.dto.login.LoginResponseDto;
 import com.thekingmoss.application.dto.registrar.RegistrarRequestDto;
+import com.thekingmoss.application.dto.usuario.UsuarioResponseDto;
 import com.thekingmoss.application.service.IAuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -30,5 +31,10 @@ public class AuthController {
         Map<String, String> response = new HashMap<>();
         response.put("message", "Usuario registrado exitosamente");
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @GetMapping("/buscar-cuenta")
+    public ResponseEntity<UsuarioResponseDto> buscarCuenta(@RequestParam String dato) {
+        return ResponseEntity.ok(service.buscarCuenta(dato));
     }
 }
