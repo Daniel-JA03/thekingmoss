@@ -2,6 +2,8 @@ package com.thekingmoss.application.service.impl;
 
 import com.thekingmoss.application.dto.login.LoginRequestDto;
 import com.thekingmoss.application.dto.login.LoginResponseDto;
+import com.thekingmoss.application.dto.recuperar.EnviarCodigoDto;
+import com.thekingmoss.application.dto.recuperar.MetodoRecuperacionDto;
 import com.thekingmoss.application.dto.registrar.RegistrarRequestDto;
 import com.thekingmoss.application.dto.usuario.UsuarioResponseDto;
 import com.thekingmoss.application.service.IAuthService;
@@ -22,6 +24,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -38,6 +42,9 @@ public class AuthServiceImpl implements IAuthService {
     private final IRolRepository rolRepository;
     private final IUsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
+
+    private final Map<Long, String> codigos = new HashMap<>();
+    private final Map<Long, Long> expiraciones = new HashMap<>();
 
     @Override
     public LoginResponseDto authenticate(LoginRequestDto loginRequestDto) {
@@ -135,7 +142,7 @@ public class AuthServiceImpl implements IAuthService {
     }
 
     @Override
-    public UsuarioResponseDto buscarCuenta(String dato) {
+    public MetodoRecuperacionDto buscarCuenta(String dato) {
         Optional<Usuario> usuarioOpt;
 
         // detectar si es email o telefono
@@ -150,12 +157,59 @@ public class AuthServiceImpl implements IAuthService {
                         "No se ha encontrado ninguna cuenta"
                 ));
 
-        return UsuarioResponseDto.builder()
-                .id(usuario.getId())
+        return MetodoRecuperacionDto.builder()
+                .usuarioId(usuario.getId())
                 .username(usuario.getUsername())
-                .email(usuario.getEmail())
-                .telefono(usuario.getTelefono())
+                .emailMasked(maskEmail(usuario.getEmail()))
+                .telefonoMasked(maskTelefono(usuario.getTelefono()))
                 .build();
+    }
+
+    @Override
+    public void enviarCodigoRecuperacion(EnviarCodigoDto dto) {
+        Usuario usuario = usuarioRepository.findById(dto.getUsuarioId())
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        String codigo = String.valueOf((int)(Math.random() * 900000) + 100000);
+
+        codigos.put(usuario.getId(), codigo);
+        expiraciones.put(usuario.getId(), System.currentTimeMillis() + 60000); // 1 min
+
+        if (dto.getMetodo().equals("EMAIL")) {
+            System.out.println("📧 Enviando código al email: " + codigo);
+        } else {
+            System.out.println("📱 Enviando código por SMS: " + codigo);
+        }
+    }
+
+    @Override
+    public void verificarCodigo(Long usuarioId, String codigo) {
+        String codigoGuardado = codigos.get(usuarioId);
+        Long expiracion = expiraciones.get(usuarioId);
+
+        if (codigoGuardado == null || expiracion == null) {
+            throw new RuntimeException("Código no generado");
+        }
+
+        if (System.currentTimeMillis() > expiracion) {
+            throw new RuntimeException("Código expirado");
+        }
+
+        if (!codigoGuardado.equals(codigo)) {
+            throw new RuntimeException("Código incorrecto");
+        }
+
+        // opcional: eliminar código después de usarlo
+        codigos.remove(usuarioId);
+        expiraciones.remove(usuarioId);
+    }
+
+    private String maskEmail(String email) {
+        return email.replaceAll("(^.).*(@.*$)", "$1****$2");
+    }
+
+    private String maskTelefono(String telefono) {
+        return telefono.replaceAll("\\d(?=\\d{2})", "*");
     }
 
 }

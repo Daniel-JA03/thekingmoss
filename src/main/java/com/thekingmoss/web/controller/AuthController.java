@@ -2,6 +2,10 @@ package com.thekingmoss.web.controller;
 
 import com.thekingmoss.application.dto.login.LoginRequestDto;
 import com.thekingmoss.application.dto.login.LoginResponseDto;
+import com.thekingmoss.application.dto.recuperar.EnviarCodigoDto;
+import com.thekingmoss.application.dto.recuperar.MetodoRecuperacionDto;
+import com.thekingmoss.application.dto.recuperar.RecuperacionRequestDto;
+import com.thekingmoss.application.dto.recuperar.VerificarCodigoDto;
 import com.thekingmoss.application.dto.registrar.RegistrarRequestDto;
 import com.thekingmoss.application.dto.usuario.UsuarioResponseDto;
 import com.thekingmoss.application.service.IAuthService;
@@ -33,8 +37,22 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @GetMapping("/buscar-cuenta")
-    public ResponseEntity<UsuarioResponseDto> buscarCuenta(@RequestParam String dato) {
-        return ResponseEntity.ok(service.buscarCuenta(dato));
+    @PostMapping("/buscar-cuenta")
+    public ResponseEntity<MetodoRecuperacionDto> buscarCuenta(@RequestBody RecuperacionRequestDto dto) {
+        return ResponseEntity.ok(service.buscarCuenta(dto.getDato()));
+    }
+
+    @PostMapping("/enviar-codigo")
+    public ResponseEntity<?> enviarCodigo(@RequestBody EnviarCodigoDto dto) {
+        service.enviarCodigoRecuperacion(dto);
+        return ResponseEntity.ok(Map.of("message", "Código enviado"));
+    }
+
+    @PostMapping("/verificar-codigo")
+    public ResponseEntity<?> verificarCodigo(@RequestBody VerificarCodigoDto dto) {
+
+        service.verificarCodigo(dto.getUsuarioId(), dto.getCodigo());
+
+        return ResponseEntity.ok(Map.of("message", "Código válido"));
     }
 }
