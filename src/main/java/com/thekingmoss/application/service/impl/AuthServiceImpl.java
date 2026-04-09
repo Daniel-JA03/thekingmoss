@@ -182,6 +182,28 @@ public class AuthServiceImpl implements IAuthService {
         }
     }
 
+    @Override
+    public void verificarCodigo(Long usuarioId, String codigo) {
+        String codigoGuardado = codigos.get(usuarioId);
+        Long expiracion = expiraciones.get(usuarioId);
+
+        if (codigoGuardado == null || expiracion == null) {
+            throw new RuntimeException("Código no generado");
+        }
+
+        if (System.currentTimeMillis() > expiracion) {
+            throw new RuntimeException("Código expirado");
+        }
+
+        if (!codigoGuardado.equals(codigo)) {
+            throw new RuntimeException("Código incorrecto");
+        }
+
+        // opcional: eliminar código después de usarlo
+        codigos.remove(usuarioId);
+        expiraciones.remove(usuarioId);
+    }
+
     private String maskEmail(String email) {
         return email.replaceAll("(^.).*(@.*$)", "$1****$2");
     }

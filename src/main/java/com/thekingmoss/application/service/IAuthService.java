@@ -12,4 +12,5 @@ public interface IAuthService {
     String register(RegistrarRequestDto registrarRequestDto);
     MetodoRecuperacionDto buscarCuenta(String dato);
     void enviarCodigoRecuperacion(EnviarCodigoDto dto);
+    void verificarCodigo(Long usuarioId, String codigo);
 }
