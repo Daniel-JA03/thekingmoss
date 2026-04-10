@@ -2,6 +2,7 @@ package com.thekingmoss.application.service.impl;
 
 import com.thekingmoss.application.dto.login.LoginRequestDto;
 import com.thekingmoss.application.dto.login.LoginResponseDto;
+import com.thekingmoss.application.dto.recuperar.CambiarPasswordDto;
 import com.thekingmoss.application.dto.recuperar.EnviarCodigoDto;
 import com.thekingmoss.application.dto.recuperar.MetodoRecuperacionDto;
 import com.thekingmoss.application.dto.registrar.RegistrarRequestDto;
@@ -202,6 +203,16 @@ public class AuthServiceImpl implements IAuthService {
         // opcional: eliminar código después de usarlo
         codigos.remove(usuarioId);
         expiraciones.remove(usuarioId);
+    }
+
+    @Override
+    public void cambiarPassword(CambiarPasswordDto dto) {
+        Usuario usuario = usuarioRepository.findById(dto.getUsuarioId())
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        usuario.setPassword(passwordEncoder.encode(dto.getNuevaPassword()));
+
+        usuarioRepository.save(usuario);
     }
 
     private String maskEmail(String email) {

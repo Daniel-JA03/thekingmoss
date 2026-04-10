@@ -2,10 +2,7 @@ package com.thekingmoss.web.controller;
 
 import com.thekingmoss.application.dto.login.LoginRequestDto;
 import com.thekingmoss.application.dto.login.LoginResponseDto;
-import com.thekingmoss.application.dto.recuperar.EnviarCodigoDto;
-import com.thekingmoss.application.dto.recuperar.MetodoRecuperacionDto;
-import com.thekingmoss.application.dto.recuperar.RecuperacionRequestDto;
-import com.thekingmoss.application.dto.recuperar.VerificarCodigoDto;
+import com.thekingmoss.application.dto.recuperar.*;
 import com.thekingmoss.application.dto.registrar.RegistrarRequestDto;
 import com.thekingmoss.application.dto.usuario.UsuarioResponseDto;
 import com.thekingmoss.application.service.IAuthService;
@@ -54,5 +51,13 @@ public class AuthController {
         service.verificarCodigo(dto.getUsuarioId(), dto.getCodigo());
 
         return ResponseEntity.ok(Map.of("message", "Código válido"));
+    }
+
+    @PostMapping("/cambiar-password")
+    public ResponseEntity<?> cambiarPassword(@RequestBody CambiarPasswordDto dto) {
+
+        service.cambiarPassword(dto);
+
+        return ResponseEntity.ok(Map.of("message", "Contraseña actualizada"));
     }
 }
