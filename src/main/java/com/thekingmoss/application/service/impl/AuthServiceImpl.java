@@ -7,6 +7,7 @@ import com.thekingmoss.application.dto.recuperar.EnviarCodigoDto;
 import com.thekingmoss.application.dto.recuperar.MetodoRecuperacionDto;
 import com.thekingmoss.application.dto.registrar.RegistrarRequestDto;
 import com.thekingmoss.application.dto.usuario.UsuarioResponseDto;
+import com.thekingmoss.application.service.EmailService;
 import com.thekingmoss.application.service.IAuthService;
 import com.thekingmoss.domain.entity.Rol;
 import com.thekingmoss.domain.entity.Usuario;
@@ -46,6 +47,8 @@ public class AuthServiceImpl implements IAuthService {
 
     private final Map<Long, String> codigos = new HashMap<>();
     private final Map<Long, Long> expiraciones = new HashMap<>();
+
+    private final EmailService emailService;
 
     @Override
     public LoginResponseDto authenticate(LoginRequestDto loginRequestDto) {
@@ -177,6 +180,7 @@ public class AuthServiceImpl implements IAuthService {
         expiraciones.put(usuario.getId(), System.currentTimeMillis() + 60000); // 1 min
 
         if (dto.getMetodo().equals("EMAIL")) {
+            emailService.enviarCodigo(usuario.getEmail(), codigo);
             System.out.println("📧 Enviando código al email: " + codigo);
         } else {
             System.out.println("📱 Enviando código por SMS: " + codigo);
