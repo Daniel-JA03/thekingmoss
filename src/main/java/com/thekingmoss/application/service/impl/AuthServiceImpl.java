@@ -170,7 +170,7 @@ public class AuthServiceImpl implements IAuthService {
     }
 
     @Override
-    public void enviarCodigoRecuperacion(EnviarCodigoDto dto) {
+    public String enviarCodigoRecuperacion(EnviarCodigoDto dto) {
         Usuario usuario = usuarioRepository.findById(dto.getUsuarioId())
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
@@ -183,8 +183,18 @@ public class AuthServiceImpl implements IAuthService {
             emailService.enviarCodigo(usuario.getEmail(), codigo);
             System.out.println("📧 Enviando código al email: " + codigo);
         } else {
-            System.out.println("📱 Enviando código por SMS: " + codigo);
+            simularEnvioSMS(usuario.getTelefono(), codigo);
         }
+
+        return codigo;
+    }
+
+    private void simularEnvioSMS(String telefono, String codigo) {
+        System.out.println("=================================");
+        System.out.println("📱 SMS SIMULADO");
+        System.out.println("Número: " + telefono);
+        System.out.println("Mensaje: Tu código es " + codigo);
+        System.out.println("=================================");
     }
 
     @Override

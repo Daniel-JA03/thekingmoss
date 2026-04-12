@@ -41,8 +41,13 @@ public class AuthController {
 
     @PostMapping("/enviar-codigo")
     public ResponseEntity<?> enviarCodigo(@RequestBody EnviarCodigoDto dto) {
-        service.enviarCodigoRecuperacion(dto);
-        return ResponseEntity.ok(Map.of("message", "Código enviado"));
+
+        String codigo = service.enviarCodigoRecuperacion(dto);
+
+        return ResponseEntity.ok(Map.of(
+                "message", "Código enviado",
+                "codigo", codigo
+        ));
     }
 
     @PostMapping("/verificar-codigo")
