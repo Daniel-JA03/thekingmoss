@@ -11,7 +11,7 @@ public interface IAuthService {
     LoginResponseDto authenticate(LoginRequestDto loginRequestDto);
     String register(RegistrarRequestDto registrarRequestDto);
     MetodoRecuperacionDto buscarCuenta(String dato);
-    void enviarCodigoRecuperacion(EnviarCodigoDto dto);
+    String enviarCodigoRecuperacion(EnviarCodigoDto dto);
     void verificarCodigo(Long usuarioId, String codigo);
     void cambiarPassword(CambiarPasswordDto dto);
 }
