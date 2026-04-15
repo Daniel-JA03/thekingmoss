@@ -4,7 +4,7 @@ spring:
   application:
     name: thekingmoss
   datasource:
-    url: jdbc:mysql://localhost:3306/thekingmoss
+    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}
     username: ${USER_NAME}
     password: ${PASSWORD_DB}
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -16,7 +16,7 @@ spring:
       hibernate:
         use_sql_comments: true
         format_sql: true
-        dialect: org.hibernate.dialect.MySQL8Dialect
+        dialect: org.hibernaRte.dialect.MySQL8Dialect
 
   mail:
     host: smtp.gmail.com
