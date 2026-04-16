@@ -16,7 +16,7 @@ spring:
       hibernate:
         use_sql_comments: true
         format_sql: true
-        dialect: org.hibernaRte.dialect.MySQL8Dialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
 
   mail:
     host: smtp.gmail.com
