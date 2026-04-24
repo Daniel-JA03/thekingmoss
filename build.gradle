@@ -40,6 +40,8 @@ dependencies {
 	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
 	// dependency for Stripe API
 	implementation "com.stripe:stripe-java:31.0.0"
+	// cloudinary dependency
+	implementation("com.cloudinary:cloudinary-http44:1.39.0")
 }
 
 tasks.named('test') {
