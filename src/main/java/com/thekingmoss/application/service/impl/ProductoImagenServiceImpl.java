@@ -1,12 +1,10 @@
 package com.thekingmoss.application.service.impl;
 
-import com.thekingmoss.application.dto.producto.ProductoResponseDto;
-import com.thekingmoss.application.dto.productoImagen.ProductoImagenRequestDto;
+
 import com.thekingmoss.application.dto.productoImagen.ProductoImagenResponse;
 import com.thekingmoss.application.mapper.producto.ProductoMapper;
 import com.thekingmoss.application.mapper.productoImagen.ProductoImagenMapper;
 import com.thekingmoss.application.service.IProductoImagenService;
-import com.thekingmoss.application.service.IProductoService;
 import com.thekingmoss.application.service.UploadFileService;
 import com.thekingmoss.domain.entity.Producto;
 import com.thekingmoss.domain.entity.ProductoImagen;
@@ -74,8 +72,7 @@ public class ProductoImagenServiceImpl implements IProductoImagenService {
 
         // Elimina la imagen antigua si se proporciona una nueva
         if (nuevaImagen != null && !nuevaImagen.isEmpty()) {
-            String nombreAntiguo = productoImagen.getImagenUrl().substring(productoImagen.getImagenUrl().lastIndexOf('/') + 1);
-            upload.deleteImage(nombreAntiguo);
+            upload.deleteImage(productoImagen.getImagenUrl());
             String nuevaUrl = upload.saveImage(nuevaImagen);
             productoImagen.setImagenUrl(nuevaUrl);
         }
@@ -99,12 +96,9 @@ public class ProductoImagenServiceImpl implements IProductoImagenService {
         ProductoImagen productoImagen = productoImagenRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Imagen no encontrada con ID: " + id));
 
-        // Extrae el nombre del archivo
-        String nombreArchivo = productoImagen.getImagenUrl().substring(productoImagen.getImagenUrl().lastIndexOf('/') + 1);
-
         // Elimina el archivo físico (si no es la imagen predeterminada)
-        if (!nombreArchivo.equals("default.jpg")) {
-            upload.deleteImage(nombreArchivo);
+        if (!productoImagen.getImagenUrl().contains("default.jpg")) {
+            upload.deleteImage(productoImagen.getImagenUrl());
         }
 
         // Elimina la entrada de la base de datos
