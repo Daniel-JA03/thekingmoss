@@ -14,18 +14,17 @@ import java.util.Map;
 public class UploadFileService {
     private final Cloudinary cloudinary;
 
-    public String saveImage(MultipartFile file)  {
-        try {
+    public String saveImage(MultipartFile file) throws IOException {
+        if (!file.isEmpty()) {
+
             Map uploadResult = cloudinary.uploader().upload(
                     file.getBytes(),
                     ObjectUtils.emptyMap()
             );
 
-            return uploadResult.get("secure_url").toString();
-
-        } catch (IOException e) {
-            throw new RuntimeException("Error al subir imagen", e);
+            return (String) uploadResult.get("secure_url");
         }
+        return "default.jpg";
     }
 
     public void deleteImage(String imagenUrl) {
