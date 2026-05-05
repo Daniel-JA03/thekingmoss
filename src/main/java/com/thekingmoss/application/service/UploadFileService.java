@@ -29,10 +29,10 @@ public class UploadFileService {
 
     public void deleteImage(String imagenUrl) {
         try {
-            // Extraer public_id desde la URL
-            String[] parts = imagenUrl.split("/");
-            String fileName = parts[parts.length - 1]; // musgo.webp
-            String publicId = fileName.substring(0, fileName.lastIndexOf('.')); // musgo
+            String publicId = imagenUrl
+                    .substring(imagenUrl.indexOf("/upload/") + 8)
+                    .replaceAll("v\\d+/", "") // elimina versión
+                    .substring(0, imagenUrl.lastIndexOf("."));
 
             cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());
 
